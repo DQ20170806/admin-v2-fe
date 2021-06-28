@@ -1,0 +1,28 @@
+
+.color-box{
+    display: block;
+    height:160px;
+    padding:20px 0;
+    text-align: center;
+    opacity: .9;  // 刚开始有个透明度
+    transition: all .3s; // 所有的动画效果都是0.3秒
+   
+    &:hover{  
+        text-decoration: none;
+        color: #555;
+        opacity: 1;  // 鼠标移上去透明度消失，
+        transform: scale(1.08);  // 鼠标移上去有一个动画效果，放大1.08倍    
+    }
+
+    .count{
+        font-size: 50px;
+        height: 80px;
+        line-height: 80px;
+    }
+    .desc{
+        font-size: 18px;
+        .fa{
+            margin-right: 5px;
+        }
+    }
+}

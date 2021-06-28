@@ -1,10 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MUtil from "util/mm.jsx";
+import User from "service/user-service.jsx"
+import _ from "lodash";
+const _mm = new MUtil();
+const _user = new User()
 
 class NavTop extends React.Component {
-  onLogOut = () =>{
-    console.log("退出登录 。。")
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: _mm.getStorage("userInfo").username || "",
+    };
   }
+  onLogOut = () => {
+    _user.logout().then((res)=>{
+
+      // 退出登录接口调用成功后，删除本地存储的用户信息，然后跳转到登录页
+      _mm.removeStorage("userInfo")
+      // this.props.history.push('/login') // 因为nav-top这个组件不是通过Route引入的，所以不能继承Route的historty对象
+      window.location.href="/login"
+
+    },(errMsg)=>{
+     //  退出登录接口调用失败，给出失败信息
+     _mm.errorTips(errorMsg)
+    })
+
+  };
   render() {
     return (
       // <div className="navbar navbar-default top-navbar" role="navigation">
@@ -39,7 +61,13 @@ class NavTop extends React.Component {
               href="javascript:;" // 改成“javascript:;” 就没有js的事件了
               aria-expanded="false"
             >
-              <i className="fa fa-user fa-fw"></i> <span>欢迎。。。。</span>
+              <i className="fa fa-user fa-fw"></i>
+              {this.state.userName ? (
+                <span>欢迎,{this.state.userName}</span>
+              ) : (
+                <span>欢迎您</span>
+              )}
+
               <i className="fa fa-caret-down"></i>
             </a>
             <ul className="dropdown-menu dropdown-user">
