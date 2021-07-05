@@ -1,0 +1,33 @@
+.img-con{
+    display: flex;
+    .img-con-item{
+        width:80px;
+        height:80px;
+        margin-right:5px;
+        position:relative;
+        img{
+            width:100%;
+            height:100%;
+        }
+        .fa-close{
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;   // 图片百分之百显示
+            text-align: center;  // 水平居中
+            line-height: 80px;   // 垂直居中
+            font-size:50px;
+            display: none;
+            color:#aaa;
+            background:rgba(0,0,0,0.2) ; // 背景色
+            cursor: pointer;
+        }
+    }
+    &:hover{
+        .fa-close{
+            display: block;
+        }
+    }
+  
+}
