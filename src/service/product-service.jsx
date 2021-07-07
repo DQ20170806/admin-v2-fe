@@ -100,16 +100,32 @@ class Product {
       data: product,
     });
   }
-   // 获取商品详情
-   getProduct(productId){
+  // 获取商品详情
+  getProduct(productId) {
     return _mm.request({
-        type    : 'post',
-        url     : '/manage/product/detail.do',
-        data    : {
-            productId : productId || 0
-        }
+      type: "post",
+      url: "/manage/product/detail.do",
+      data: {
+        productId: productId || 0,
+      },
     });
-}
+  }
+  // 新增品类
+  saveCategory(params) {
+    return _mm.request({
+      type: "post",
+      url: "/manage/category/add_category.do",
+      data: params,
+    });
+  }
+  // 修改品类名称
+  updateCategoryName(params) {
+    return _mm.request({
+      type: "post",
+      url: "/manage/category/set_category_name.do",
+      data: params,
+    });
+  }
 }
 
 export default Product;
